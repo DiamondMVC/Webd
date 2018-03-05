@@ -1,0 +1,95 @@
+@{
+  import webd.web;
+
+  auto values = page.getLoop("item::values");
+}
+
+<h2>Fields: @=values.length;</h2>
+
+@:foreach (value; values) {
+  <h3>Name: @=value.get("name");</h3>
+
+  @:switch (value.get("type")) {
+    @:case "text":
+      <h4>Text: @=value.get!string("value");</h4>
+      @:break;
+
+    @:case "longText":
+      <p>@=value.get!string("value");</p>
+      @:break;
+
+    @:case "html":
+      @=value.get!string("value");
+      @:break;
+
+    @:case "image":
+      <img src="@=value.get!string("value");" alt=""><br>
+      @:break;
+
+    @:case "number":
+      <h4>Number: @=value.get!long("value");</h4>
+      @:break;
+
+    @:case "decimalNumber":
+      <h4>Decimal: @=value.get!double("value");</h4>
+      @:break;
+
+    @:case "datetime":
+    @:case "date":
+    @:case "time":
+      <h4>DateTime: @=value.get!DateTime("value").toSimpleString();</h4>
+      @:break;
+
+    @:case "boolean":
+      <h4>IsTrue: @=(value.get!bool("value") ? "yes" : "no");</h4>
+      @:break;
+
+    @:case "values":
+      @:auto childValues = value.getLoop("values");
+
+      @:foreach (childValue; childValues) {
+        <h3>Child-Name: @=childValue.get("name");</h3>
+
+        @:switch (childValue.get("type")) {
+          @:case "text":
+            <h4>Child-Text: @=childValue.get!string("value");</h4>
+            @:break;
+
+          @:case "longText":
+            <p>@=childValue.get!string("value");</p>
+            @:break;
+
+          @:case "html":
+            @=childValue.get!string("value");
+            @:break;
+
+          @:case "image":
+            <img src="@=childValue.get!string("value");" alt=""><br>
+            @:break;
+
+          @:case "number":
+            <h4>Child-Number: @=childValue.get!long("value");</h4>
+            @:break;
+
+          @:case "decimalNumber":
+            <h4>Child-Decimal: @=childValue.get!double("value");</h4>
+            @:break;
+
+          @:case "datetime":
+          @:case "date":
+          @:case "time":
+            <h4>Child-DateTime: @=childValue.get!DateTime("value").toSimpleString();</h4>
+            @:break;
+
+          @:case "boolean":
+            <h4>Child-IsTrue: @=(childValue.get!bool("value") ? "yes" : "no");</h4>
+            @:break;
+
+          @:default: break;
+        }
+      }
+      @:break;
+
+      @:default: break;
+  }
+}

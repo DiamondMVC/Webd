@@ -1,0 +1,3 @@
+<p>
+  @=page.get("paragraph::content");
+</p>

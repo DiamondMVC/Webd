@@ -1,0 +1,4 @@
+{
+  "staticFileRoutes": ["public", "nyanjs", "app"],
+  "viewOnly": true
+}

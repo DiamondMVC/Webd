@@ -1,0 +1,30 @@
+@[
+  layout:
+    master
+]
+
+@{
+  import webd.dal;
+
+  auto webPage = getWebPageFromRoute(super.route.name);
+
+  if (!webPage)
+  {
+    client.notFound();
+  }
+
+  addPlaceHolder("title", webPage.title ? webPage.title : "");
+}
+
+@:if (webPage.itemId) {
+  @:renderModel!"__item"(webPage.itemId);
+}
+@:else if (webPage.itemListId) {
+  @:renderModel!"__itemlist"(webPage.itemListId);
+}
+@:else if (webPage.moduleId) {
+  @:renderModel!"__module"(webPage.moduleId);
+}
+@:else {
+  @:renderModel!"__page"(webPage.id);
+}

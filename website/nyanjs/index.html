@@ -1,0 +1,48 @@
+<html>
+
+  <head>
+    <title>Nyanjs - Elegant and minimal</title>
+
+    <script>
+      window.appPath = '/nyanjs/app/app.js';
+    </script>
+    <link href="/nyanui/nyanui.css" rel="stylesheet">
+    <script src="/nyanui/nyanui.js"></script>
+    <link href="nyanjs.css" rel="stylesheet">
+    <script src="nyanjs.js"></script>
+  </head>
+  <body>
+    <view id="header"></view>
+    <view id="mainView"></view>
+    <view id="footer"></view>
+
+    <h3 class="n-visible-xs">XS</h3>
+    <h3 class="n-visible-sm">SM</h3>
+    <h3 class="n-visible-md">MD</h3>
+    <h3 class="n-visible-lg">LG</h3>
+
+    <h3 class="n-visible-xs n-visible-sm">XS + SM</h3>
+    <h3 class="n-visible-md n-visible-lg">MD + LG</h3>
+
+    <h3 class="n-visible-xs n-visible-sm n-visible-md">XS + SM + MD</h3>
+    <h3 class="n-visible-sm n-visible-md n-visible-lg">SM + MD + LG</h3>
+
+    <div class="table">
+      <div class="n-row" style="height: 200px;">
+        <div class="n-col n-col-4" style="background-color: red">Hello</div>
+        <div class="n-col n-col-4" style="background-color: blue">World</div>
+        <div class="n-col n-col-2" style="background-color: green">!</div>
+
+        <div style="clear: both;"></div>
+      </div>
+
+      <div class="n-row" style="height: 60px;">
+        <div class="n-col n-col-4" style="background-color: red">Hello</div>
+        <div class="n-col n-col-4" style="background-color: blue">World</div>
+        <div class="n-col n-col-2" style="background-color: green">!</div>
+
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+  </body>
+</html>

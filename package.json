@@ -1,0 +1,13 @@
+{
+	"name": "webd",
+	"description": "Open-source & Free CMS/E-commerce/Intranet System based on Diamond MVC.",
+	"authors": [
+		"Jacob Jensen"
+	],
+	"license": "The MIT License (MIT)",
+	"copyright": "Copyright © 2018 Jacob Jensen",
+	"targetType": "sourceLibrary",
+	"sourcePaths": [
+		"src"
+	]
+}

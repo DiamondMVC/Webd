@@ -1,0 +1,12 @@
+@[
+  model:
+    ulong
+]
+
+@:auto item = generateItemTags(model);
+
+<div class="webd-item @=item.cssClasses;">
+  @:render(item.templateView ? item.templateView : "item_details");
+</div>
+
+@:page.clearTags("item::");

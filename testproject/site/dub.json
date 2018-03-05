@@ -1,0 +1,26 @@
+{
+	"dependencies": {
+		"vibe-d": "~>0.8.1",
+		"diamond": "~>2.6.0",
+		"mysql-native": "1.1.2",
+		"webd": "~>0.0.1"
+	},
+	"versions": [
+		"VibeDefaultMain",
+		"Diamond_Debug",
+		"Diamond_WebServer",
+		"VIBE_D_OLD"
+	],
+	"sourcePaths": [
+		"core",
+		"models",
+		"controllers",
+		"testwebdmodule"
+	],
+	"stringImportPaths": [
+		"config",
+		"views"
+	],
+	"name": "webd-site",
+	"targetType": "executable"
+}

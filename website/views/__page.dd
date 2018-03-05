@@ -1,0 +1,41 @@
+@[
+  model:
+    ulong
+]
+
+@{
+  import webd.dal;
+
+  auto webPage = getWebPage(model);
+
+  if (!webPage)
+  {
+    client.notFound();
+  }
+
+  auto paragraphs = getParagraphs(webPage.id);
+}
+
+<div class="webd-page @=webPage.cssClasses;">
+  @:foreach (paragraph; paragraphs) {
+    <div class="webd-page @=paragraph.cssClasses;">
+      @:if (paragraph.itemId) {
+        @:renderModel!"__item"(paragraph.itemId);
+      }
+      @:else if (paragraph.itemListId) {
+        @:renderModel!"__itemlist"(paragraph.itemListId);
+      }
+      @:else if (paragraph.moduleId) {
+        @:renderModel!"__module"(paragraph.moduleId);
+      }
+      @:else if (paragraph.templateView) {
+        @:page.add("paragraph::content", paragraph.content);
+        @:render(paragraph.templateView);
+        @:page.clearTags("paragraph::");
+      }
+      @:else {
+        @=paragraph.content;
+      }
+    </div>
+  }
+</div>

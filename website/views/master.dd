@@ -1,0 +1,110 @@
+@{
+  import std.file : dirEntries, SpanMode, exists, thisExePath;
+  import std.path : baseName, dirName, absolutePath;
+  import std.algorithm : endsWith;
+
+  import webd.core.config : webdConfig;
+}
+
+@<doctype>
+<html lang="@=webdConfig.language;" xml:lang="@=webdConfig.language;" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <!-- Primary Language/Frameworks: D, vibe.d, Diamond MVC and nyanjs -->
+  <!-- https://dlang.org/ -->
+  <!-- http://vibed.org/ -->
+  <!-- https://github.com/DiamondMVC/ -->
+  <!-- https://github.com/bausshf/nyanjs -->
+
+  <title>@=webdConfig.websiteName; - @<title></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  @* ------------------------------ System Files ------------------------------ *
+
+  <script src="/nyanjs/nyanjs.js"></script>
+  <link href="/nyanjs/nyanjs.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/system/font-awesome/css/font-awesome.min.css">
+
+  @:auto cssPath = webdConfig.rootPath ~ "/public/system/css";
+  @:foreach (file; dirEntries(cssPath, SpanMode.depth).filter!(f => f.name.endsWith(".css"))) {
+    <link href="/public/system/css/@=baseName(file.name);" rel="stylesheet">
+  }
+
+  @:auto jsPath = webdConfig.rootPath ~ "/public/system/js";
+  @:foreach (file; dirEntries(jsPath, SpanMode.depth).filter!(f => f.name.endsWith(".js"))) {
+    <script src="/public/system/js/@=baseName(file.name);"></script>
+  }
+
+  @* -------------------- Shared Files ------------------------------ *
+
+  @:cssPath = webdConfig.rootPath ~ "/public/files/css/global.css";
+
+  @:if (exists(cssPath)) {
+    <link href="/public/files/css/global.css" rel="stylesheet">
+  }
+
+  @:cssPath = webdConfig.rootPath ~ "/public/files/css/" ~ super.name ~ ".css";
+
+  @:if (exists(cssPath)) {
+    <link href="/public/files/css/@=super.name;.css" rel="stylesheet">
+  }
+
+  @:jsPath = webdConfig.rootPath ~ "/public/files/js";
+  @:foreach (file; dirEntries(jsPath, SpanMode.depth).filter!(f => f.name.endsWith(".js"))) {
+    <script src="/public/files/js/@=baseName(file.name);"></script>
+  }
+
+  @* ------------------------------ Website Files ------------------------------ *
+
+  @:cssPath = webdConfig.rootPath ~ "/public/files/site/" ~ webdConfig.websiteName ~  "/css/global.css";
+
+  @:if (exists(cssPath)) {
+    <link href="/public/files/site/@=webdConfig.websiteName;/css/global.css" rel="stylesheet">
+  }
+
+  @:cssPath = webdConfig.rootPath ~ "/public/files/site/" ~ webdConfig.websiteName ~  "/css/" ~ super.name ~ ".css";
+
+  @:if (exists(cssPath)) {
+    <link href="/public/files/site/@=webdConfig.websiteName;/css/@=super.name;.css" rel="stylesheet">
+  }
+
+  @:jsPath = webdConfig.rootPath ~ "/public/files/site/" ~ webdConfig.websiteName ~ "/js";
+  @:foreach (file; dirEntries(jsPath, SpanMode.depth).filter!(f => f.name.endsWith(".js"))) {
+    <script src="/public/files/site/@=webdConfig.websiteName;/js/@=baseName(file.name);"></script>
+  }
+
+  @:auto faviconPath = webdConfig.rootPath ~ "/public/files/site/" ~ webdConfig.websiteName ~  "/media/favicon.png";
+
+  @:if (exists(faviconPath)) {
+    <link rel="shortcut icon" type="image/png" href="/public/files/site/@=webdConfig.websiteName;/media/favicon.png"/>
+  }
+
+  @* ------------------------------ Disable Translate ------------------------------ *
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="content-language" content="@=webdConfig.language;"/>
+  <meta name="google" content="notranslate">
+</head>
+<body>
+  <div class="webd-container">
+
+    <div class="webd-head">
+      @:render("master_head");
+    </div>
+
+    <div class="webd-content">
+      <div class="webd-mainview">
+        @<view>
+      </div>
+    </div>
+
+    <div class="webd-footer">
+      @:render("master_footer");
+    </div>
+
+  </div>
+</body>
+</html>

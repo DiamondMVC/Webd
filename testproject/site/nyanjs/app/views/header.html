@@ -1,0 +1,141 @@
+
+
+
+<!-- Button Example -->
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-blue-dark background-color-blue color-navy"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-yellow-dark background-color-yellow color-orange-dark"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-red background-color-red-dark color-pink-dark"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-green-dark background-color-green color-white"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-orange-dark background-color-orange color-or"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<view
+  n-view="n-button"
+  n-data="{ link: '#', text: 'Click Me!' }"
+  style="width: 140px; height: 40px;"
+  class="border-bottom-purple-dark background-color-purple color-pink-dark"
+  n-event-controller="testController"
+  n-events="click:onClick"
+>
+</view>
+
+<!-- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div n-data-source="{length: 100}" n-data-type="foreach">
+  <br>
+</div>
+
+<view
+  n-view="test"
+  n-data='[{ messageTest: "test1"}, { messageTest: "test2"}, { messageTest: "test3"}]'
+  n-data-bind="model">
+</view>
+
+<div class="header">
+  <div class="logo">
+  </div>
+
+  <div class="menu" n-data-source="getMenu">
+    <a n-attr="href:link" n-data="text" n-if="menuLink|menuLink.text !== 'Docs'"></a>
+  </div>
+
+  <div n-resp="xs,sm" n-resp-bind="responsiveBox" style="background-color: red;">
+    <div n-data-source="[3,4,7,6,5,3,2,1,7,5]" n-data-type="foreach" n-if="d|d.length === 10" n-filter="value >= 3" n-sort="a < b">
+      <p>
+        Hello <span n-inline></span>!
+      </p>
+    </div>
+  </div>
+  <div n-resp="md,lg" n-resp-bind="responsiveBox" style="background-color: blue;"></div>
+</div>
+
+<div class="table">
+  <div class="n-row" style="height: 200px;">
+    <div class="n-col n-col-4" style="background-color: red">Hello</div>
+    <div class="n-col n-col-4" style="background-color: blue">World</div>
+    <div class="n-col n-col-2" style="background-color: green">!</div>
+
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="n-row" style="height: 60px;">
+    <div class="n-col n-col-5 n-visible-xs n-visible-sm" style="background-color: red">Hello</div>
+    <div class="n-col n-col-5 n-visible-xs n-visible-sm" style="background-color: blue">World!</div>
+
+
+    <div class="n-col n-col-4 n-visible-md n-visible-lg" style="background-color: red">Hello</div>
+    <div class="n-col n-col-4 n-visible-md n-visible-lg" style="background-color: blue">World!</div>
+    <div class="n-col n-col-2 n-visible-md n-visible-lg" style="background-color: green">!</div>
+
+    <div style="clear: both;"></div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>

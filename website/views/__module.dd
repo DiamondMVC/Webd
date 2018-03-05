@@ -1,0 +1,24 @@
+@[
+  model:
+    ulong
+]
+
+@{
+  import webd.dal;
+
+  auto modulePackage = getModule(model);
+
+  if (!modulePackage)
+  {
+    client.notFound();
+  }
+
+  import webd.modules;
+
+  page.add("module::id", modulePackage.id);
+  page.add("module::name", modulePackage.name);
+}
+
+<div class="webd-module @=modulePackage.cssClasses;">
+  @:fireEvent!PageRenderArgs(modulePackage.name, "render", new PageRenderArgs(this, page));
+</div>

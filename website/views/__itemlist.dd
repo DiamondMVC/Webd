@@ -1,0 +1,37 @@
+@[
+  model:
+    ulong
+]
+
+@{
+  import webd.dal;
+  import webd.models.database;
+
+  auto itemList = getItemList(model);
+
+  if (!itemList)
+  {
+    client.notFound();
+  }
+
+  auto webPages = [getWebPage(itemList.pageId)];
+
+  if (itemList.includeSubPages)
+  {
+    webPages ~= getAllSubWebPages(itemList.pageId);
+  }
+}
+
+<ul class="webd-itemlist @=itemList.cssClasses;">
+  @:foreach (webPage; webPages) {
+    @:auto item = generateItemTags(webPage.itemId, false);
+
+    @:if (item) {
+      <li class="webd-itemlist-item @=itemList.cssClassesItem;">
+        @:render(itemList.templateView ? itemList.templateView : "item_listitem");
+      </li>
+    }
+
+    @:page.clearTags("item::");
+  }
+</ul>

@@ -1,5 +1,5 @@
 # Webd
-Open-source &amp; Free CMS/E-commerce/Intranet System based on Diamond MVC and the core behind the official Diamond website.
+Open-source &amp; Free CMS/E-commerce/Intranet System based on Diamond MVC.
 
 The top goals of Webd are:
 

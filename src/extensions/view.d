@@ -1,13 +1,21 @@
+/**
+* Copyright © Webd 2018
+* License: MIT (https://github.com/DiamondMVC/Webd/blob/master/LICENSE)
+* Author: Jacob Jensen (bausshf)
+*/
 module webd.extensions.view;
 
+/// Extensions for views.
 mixin template extensions()
 {
   import webd.web.page;
 
+  /// The page associated with the view.
   private Page _webd_page;
 
   @property
   {
+    /// Gets the page associated with the view.
     public Page page()
     {
       if (!_webd_page)
@@ -23,6 +31,14 @@ mixin template extensions()
 
   import webd.models : WebdWebItem;
 
+  /**
+  * Generates tags for an item.
+  * Params:
+  *   itemId = The item id.
+  *   strict = Boolean determining whether the tag generation is strict or not. If it's strict it will throw a 404, else it will just return null for the item.
+  * Returns:
+  *   The item that generated the tags' db representation. Returns null if it's non-strict and the item doesn't exist.
+  */
   WebdWebItem generateItemTags(ulong itemId, bool strict = true)
   {
     import webd.web;
